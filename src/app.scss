@@ -1,0 +1,15 @@
+@import "/src/variables.scss";
+
+@font-face {
+    font-family: "Mononoki NF";
+    src: url("/static/fonts/Mononoki/MononokiNerdFont-Regular.ttf");
+}
+
+body {
+    background-color: $background-color;
+
+    color: $text-color;
+    text-shadow: 0 0 4px $text-color;
+
+    font-family: "Mononoki NF";
+}
