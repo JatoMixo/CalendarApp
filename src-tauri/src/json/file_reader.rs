@@ -20,10 +20,7 @@ pub fn read_file(file_path: &str) -> Result<String, FileError> {
 
 pub fn json_from_file(file_path: &str) -> Result<Value, FileError> {
     match read_file(file_path) {
-        Ok(x) => match json_from_string(x) {
-            Ok(final_json) => Ok(final_json),
-            Err(_error) => Err(FileError::ParseError),
-        },
+        Ok(x) => json_from_string(x),
         Err(_error) => return Err(FileError::ReadError),
     }
 }
