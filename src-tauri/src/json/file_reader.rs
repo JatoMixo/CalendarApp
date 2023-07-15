@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{copy, stdout};
+use std::io::Read;
 use serde_json::Value;
 use crate::json::json_formatter::json_from_string;
 use crate::error::FileError;
@@ -12,8 +12,9 @@ pub fn read_file(file_path: &str) -> Result<String, FileError> {
         Err(_error) => return Err(FileError::ReadError),
     }
 
-    match copy(&mut file, &mut stdout()) {
-        Ok(x) => Ok(x.to_string()),
+    let mut content = String::new();
+    match file.read_to_string(&mut content) {
+        Ok(_value) => Ok(content),
         Err(_error) => Err(FileError::ReadError),
     }
 }
