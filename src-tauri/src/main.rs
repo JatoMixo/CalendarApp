@@ -2,9 +2,9 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod json;
-mod file;
 
 use json::json_formatter::{json_from_string, json_to_string};
+use json::{file_reader, file_writer, error};
 
 fn main() {
   tauri::Builder::default()
