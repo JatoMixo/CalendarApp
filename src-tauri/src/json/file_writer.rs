@@ -1,4 +1,4 @@
-use std::{fs::File, io::Write};
+use std::{fs::File, fs::OpenOptions, io::Write};
 use serde_json::Value;
 use crate::error::FileError;
 use crate::json::json_formatter::json_to_string;
@@ -12,10 +12,10 @@ pub fn write_to_file(file_path: &str, content: String) -> Result<(), FileError> 
         }
     }
 
-    let mut file = File::open(file_path).unwrap();
+    let mut file = OpenOptions::new().write(true).open(file_path).unwrap();
     match file.write_all(content.as_bytes()) {
         Ok(_value) => Ok(()),
-        Err(_error) => Err(FileError::WriteError),
+        Err(_error) => {println!("{}", _error); Err(FileError::WriteError)},
     }
 }
 

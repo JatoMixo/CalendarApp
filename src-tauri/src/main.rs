@@ -7,7 +7,10 @@ use json::json_formatter::{json_from_string, json_to_string};
 use json::{file_reader, file_writer, error};
 
 mod user_folder;
-use user_folder::get_user_folder;
+use user_folder::{get_user_folder, CACHE_NAME};
+
+mod cache;
+use cache::read_cache;
 
 fn main() {
   tauri::Builder::default()
