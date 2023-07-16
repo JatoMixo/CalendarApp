@@ -5,11 +5,11 @@ use crate::file_writer::write_json_to_file;
 
 pub fn read_cache() -> Value {
 
-    let cache_structure: Value = json!(r#"{
-        projects: [
+    let cache_structure: Value = json!({
+        "projects": [
 
         ],
-    }"#);
+    });
 
     let cache_path = &(get_user_folder().unwrap() + CACHE_NAME);
 
