@@ -1,6 +1,7 @@
 use serde::{Serialize, Deserialize};
+use crate::calendar::date::Date;
 
-#[Derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Project {
     name: String,
     color: String,

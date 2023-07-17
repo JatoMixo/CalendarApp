@@ -1,5 +1,6 @@
 use serde::{Serialize, Deserialize};
 
+#[derive(Debug, Deserialize, Serialize)]
 pub enum Month {
     January,
     February,
@@ -16,25 +17,25 @@ pub enum Month {
 }
 
 impl Month {
-    pub fn to_string(&self) {
+    pub fn to_string(&self) -> String {
         match self {
-            January => "January",
-            February => "February",
-            March => "March",
-            April => "April",
-            May => "May",
-            June => "June",
-            July => "July",
-            August => "August",
-            September => "September",
-            October => "October",
-            November => "November",
-            December => "December",
-        }
+            Month::January => "January",
+            Month::February => "February",
+            Month::March => "March",
+            Month::April => "April",
+            Month::May => "May",
+            Month::June => "June",
+            Month::July => "July",
+            Month::August => "August",
+            Month::September => "September",
+            Month::October => "October",
+            Month::November => "November",
+            Month::December => "December",
+        }.to_string()
     }
 
     pub fn from_string(string: String) -> Option<Month> {
-        match &string {
+        match string.as_str() {
             "January" => Some(Month::January),
             "February" => Some(Month::February),
             "March" => Some(Month::March),
@@ -52,7 +53,7 @@ impl Month {
     } 
 }
 
-#[Derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Date {
     day: u8,
     month: Month,
