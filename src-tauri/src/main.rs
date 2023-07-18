@@ -18,25 +18,9 @@ use calendar::date::Date;
 
 use serde_json::json;
 
+use crate::cache::remove_project_from_cache;
+
 fn main() {
-  let project = Project {
-    name: "Potato".to_string(),
-    description: "ASDASD".to_string(),
-    color: "#6f6f6f".to_string(),
-    start_date: Date {
-      day: 24,
-      month: 6,
-      year: 2023,
-    },
-    final_date: Date {
-      day: 30,
-      month: 7,
-      year: 2077,
-    },
-  };
-  println!("Created the cache: {:?}", create_cache());
-  println!("Pushed the new project: {:?}", push_project_to_cache(project));
-  println!("Projects from cache: {:?}", get_projects_from_cache());
   tauri::Builder::default()
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

@@ -36,6 +36,13 @@ pub fn get_projects_from_cache() -> Vec<Project> {
 pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
 
     let mut projects: Vec<Project> = get_projects_from_cache();
+
+    for project_i in projects.iter() {
+        if project_i.name == project.name {
+            return Err(FileError::ProjectAlreadyExists);
+        }
+    }
+
     projects.push(project);
 
     let json_cache = json!({
@@ -52,7 +59,19 @@ pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
     write_json_to_file(&cache_path, json_cache)
 }
 
-pub fn remove_project_from_cache() -> Result<(), FileError> {
+pub fn remove_project_from_cache(project_name: String) -> Result<(), FileError> {
+
+    let actual_projects = get_projects_from_cache();
+    create_cache().unwrap();
+
+    for project in actual_projects {
+        if project.name == project_name {
+            continue;
+        }
+
+        push_project_to_cache(project).unwrap();
+    }
+
     Ok(())
 }
 
@@ -71,7 +90,6 @@ pub fn create_cache() -> Result<(), FileError> {
         Err(_) => return Err(FileError::CreateError),
     }
 
-    println!("{}", user_folder);
     let cache_path = user_folder + CACHE_NAME;
 
     write_json_to_file(&cache_path, cache_structure)
