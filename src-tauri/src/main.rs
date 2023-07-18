@@ -14,6 +14,9 @@ use cache::{read_json_cache, get_projects_from_cache, create_cache};
 
 mod calendar;
 use calendar::project::Project;
+use calendar::date::Date;
+
+use serde_json::json;
 
 fn main() {
   tauri::Builder::default()
