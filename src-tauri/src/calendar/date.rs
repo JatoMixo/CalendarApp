@@ -4,9 +4,9 @@ use crate::json::error::FileError;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Date {
-    day: u8,
-    month: u8,
-    year: u16,
+    pub day: u8,
+    pub month: u8,
+    pub year: u16,
 }
 
 impl Date {
