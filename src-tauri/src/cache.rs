@@ -11,19 +11,13 @@ pub fn read_json_cache() -> Value {
 
     let cache_path = &(get_user_folder().unwrap() + CACHE_NAME);
 
-    let mut json_data: Value = Value::Null;
-
     match json_from_file(&cache_path) {
-        Ok(value) => {
-            json_data = value;
-        },
-        Err(_error) => {
+        Ok(value) => value,
+        Err(_) => {
             create_cache().unwrap();
-            return read_json_cache();
-        },
+            read_json_cache()
+        }
     }
-
-    json_data
 }
 
 pub fn get_projects_from_cache() -> Vec<Project> {
@@ -31,7 +25,7 @@ pub fn get_projects_from_cache() -> Vec<Project> {
     let mut projects: Vec<Project> = Vec::new();
 
     for project_value in projects_as_values {
-        let project: Project = serde_json::from_value(project_value).unwrap();
+        let project: Project = Project::from_json(project_value).unwrap();
 
         projects.push(project);
     }
@@ -39,8 +33,23 @@ pub fn get_projects_from_cache() -> Vec<Project> {
     projects
 }
 
-pub fn push_project_to_cache() -> Result<(), FileError> {
-    Ok(())
+pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
+
+    let mut projects: Vec<Project> = get_projects_from_cache();
+    projects.push(project);
+
+    let json_cache = json!({
+        "projects": projects,
+    });
+
+    let mut cache_path: String = String::new();
+
+    match get_user_folder() {
+        Ok(user_folder) => cache_path = user_folder + CACHE_NAME,
+        Err(_) => return Err(FileError::CreateError),
+    }
+
+    write_json_to_file(&cache_path, json_cache)
 }
 
 pub fn remove_project_from_cache() -> Result<(), FileError> {
@@ -55,7 +64,15 @@ pub fn create_cache() -> Result<(), FileError> {
         ]
     });
 
-    let cache_path = &(get_user_folder().unwrap() + CACHE_NAME);
+    let user_folder: String;
 
-    Ok(())
+    match get_user_folder() {
+        Ok(new_user_folder) => user_folder = new_user_folder,
+        Err(_) => return Err(FileError::CreateError),
+    }
+
+    println!("{}", user_folder);
+    let cache_path = user_folder + CACHE_NAME;
+
+    write_json_to_file(&cache_path, cache_structure)
 }
