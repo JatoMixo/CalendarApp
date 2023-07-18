@@ -27,9 +27,14 @@ pub fn read_json_cache() -> Value {
 }
 
 pub fn get_projects_from_cache() -> Vec<Project> {
+    let projects_as_values: Vec<Value> = read_json_cache()["projects"].as_array().unwrap().to_vec();
     let mut projects: Vec<Project> = Vec::new();
 
+    for project_value in projects_as_values {
+        let project: Project = serde_json::from_value(project_value).unwrap();
 
+        projects.push(project);
+    }
 
     projects
 }
@@ -52,5 +57,5 @@ pub fn create_cache() -> Result<(), FileError> {
 
     let cache_path = &(get_user_folder().unwrap() + CACHE_NAME);
 
-    write_json_to_file(cache_path, cache_structure)
+    Ok(())
 }

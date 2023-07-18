@@ -18,17 +18,15 @@ pub fn write_to_file(file_path: &str, content: String) -> Result<(), FileError> 
         .open(file_path)
         .unwrap();
 
-    println!("Writing content to file: {}", content);
     match file.write_all(content.as_bytes()) {
         Ok(_value) => Ok(()),
-        Err(_error) => {println!("{}", _error); Err(FileError::WriteError)},
+        Err(_error) => Err(FileError::WriteError),
     }
 }
 
 pub fn write_json_to_file(file_path: &str, json_content: Value) -> Result<(), FileError> {
 
     let json_string = json_to_string(json_content);
-    println!("Created JSON String: {}", json_string);
 
     write_to_file(file_path, json_string)
 }

@@ -1,6 +1,6 @@
 use dirs::home_dir;
 
-pub const CACHE_NAME: &str = "projectcalendar-data.json";
+pub const CACHE_NAME: &str = "/projectcalendar-data.json";
 
 pub fn get_user_folder() -> Result<String, String> {
     match home_dir() {

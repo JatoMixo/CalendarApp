@@ -10,7 +10,7 @@ mod user_folder;
 use user_folder::{get_user_folder, CACHE_NAME};
 
 mod cache;
-use cache::read_json_cache;
+use cache::{read_json_cache, get_projects_from_cache, create_cache};
 
 mod calendar;
 use calendar::project::Project;
