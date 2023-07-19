@@ -1,5 +1,3 @@
-use std::fs::File;
-
 use serde_json::{Value, json};
 use crate::file_reader::json_from_file;
 use crate::user_folder::{get_user_folder, CACHE_NAME};
