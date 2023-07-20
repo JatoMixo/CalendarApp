@@ -38,6 +38,16 @@
 
 <h1>Calendar App</h1>
 
+<div id="days-row">
+    <p>Monday</p>
+    <p>Tuesday</p>
+    <p>Wednesday</p>
+    <p>Thursday</p>
+    <p>Friday</p>
+    <p>Saturday</p>
+    <p>Sunday</p>
+</div>
+
 <div id="calendar-grid">
     {#each [...Array(31).keys()] as day}
         <Day day_number={day.toString()} project={example_projects[0]}/>
