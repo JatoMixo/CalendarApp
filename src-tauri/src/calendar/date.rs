@@ -34,4 +34,8 @@ impl Date {
             Err(_) => Err(FileError::ParseError),
         }
     }
+
+    pub fn to_int(&self) -> u32 {
+        (self.day as u16 + (self.month * 12) as u16 + self.year * 365) as u32
+    }
 }

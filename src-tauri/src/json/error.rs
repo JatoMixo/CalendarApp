@@ -5,4 +5,5 @@ pub enum FileError {
     WriteError,
     ParseError,
     ProjectAlreadyExists,
+    InvalidDates,
 }

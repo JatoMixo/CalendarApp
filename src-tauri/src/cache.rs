@@ -35,9 +35,21 @@ pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
 
     let mut projects: Vec<Project> = get_projects_from_cache();
 
+    // Check if the project is valid
     for project_i in projects.iter() {
+
+        // Check if the project already exists
         if project_i.name == project.name {
             return Err(FileError::ProjectAlreadyExists);
+        }
+
+        // Check if the dates are already in use
+        let is_start_date_on_other_project: bool = project_i.start_date.to_int() <= project.start_date.to_int() && project_i.final_date.to_int() >= project.start_date.to_int();
+        let is_final_date_on_other_project: bool = project_i.start_date.to_int() <= project.final_date.to_int() && project_i.final_date.to_int() >= project.final_date.to_int();
+        let is_interfering_with_project: bool = project_i.start_date.to_int() < project.start_date.to_int() && project_i.final_date.to_int() > project.final_date.to_int();
+
+        if is_start_date_on_other_project || is_final_date_on_other_project || is_interfering_with_project {
+            return Err(FileError::InvalidDates);
         }
     }
 
