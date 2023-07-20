@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let projects = [{name: "", description: "", color: "", start_date: {day: 0, month: 0, year: 0}, final_date: {day: 0, month: 0, year: 0}}];
+    export let project = {name: "", description: "", color: "", start_date: {day: 0, month: 0, year: 0}, final_date: {day: 0, month: 0, year: 0}};
     export let day_number = "";
 </script>
 
@@ -10,8 +10,8 @@
     #main-box {
         background-color: #1c1c1c;
 
-        width: 125px;
-        height: 200px;
+        width: 115px;
+        height: 150px;
 
         border: solid 4px $grey-color;
         border-radius: 15px;
@@ -24,20 +24,14 @@
         color: white;
         text-shadow: 0 0 5px $grey-color;
 
-        font-size: 40px;
+        font-size: 20px;
 
         margin-top: 6px;
         margin-left: 6px;
         margin-bottom: 0;
     }
 
-    #projects-container {
-        margin-top: 0;
-
-        padding: 0;
-    }
-
-    .project {
+    #project {
 
         margin-top: 0;
 
@@ -47,25 +41,23 @@
 
         h1 {
             margin: 0;
+            font-size: 25px;
         }
 
         p {
             margin: 0;
+            font-size: 15px;
         }
 
-        height: 64px;
+        height: 110px;
     }
 </style>
 
 <div id="main-box">
     <h1 id="day-number">{day_number}</h1>
 
-    <div id="projects-container">
-        {#each projects as project}
-            <div class="project" style="background-color: {project.color};">
-                <h1>{project.name}</h1>
-                <p>{project.description}</p>
-            </div>
-        {/each}
+    <div id="project" style="background-color: {project.color};">
+        <h1>{project.name}</h1>
+        <p>{project.description}</p>
     </div>
 </div>

@@ -34,37 +34,12 @@
 </script>
 
 <style lang="scss">
-
 </style>
 
-<h1>Testing...</h1>
-<p>Just... Stay here for a little bit more, I swear this is gonna look good at some point</p>
+<h1>Calendar App</h1>
 
 <div id="calendar-grid">
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
-    <div class="day-element">
-        <p>Just testing</p>
-    </div>
+    {#each [...Array(31).keys()] as day}
+        <Day day_number={day.toString()} project={example_projects[0]}/>
+    {/each}
 </div>
-
-<Day projects={example_projects} day_number="12"/>

@@ -19,7 +19,7 @@ body {
 #calendar-grid {
     display: grid;
 
-    $day-element-size: 100px;
+    $day-element-size: 120px;
     grid-template-columns: repeat(7, $day-element-size);
 
     background-color: $calendar-background;
