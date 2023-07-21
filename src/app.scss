@@ -56,3 +56,12 @@ body {
         margin-bottom: 2px;
     }
 }
+
+#calendar-section {
+    display: flex;
+    justify-content: center;
+    
+    flex-direction: column;
+
+    width: fit-content;
+}
