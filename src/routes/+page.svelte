@@ -1,6 +1,8 @@
 <script lang="ts">
     import Day from "$lib/Day.svelte";
+    import { invoke } from "@tauri-apps/api/tauri";
 
+    /* ====== TO DELETE ====== */
     const example_projects = [{
         
         name: "Test",

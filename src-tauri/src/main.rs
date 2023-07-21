@@ -3,25 +3,18 @@
 
 mod json;
 
-use json::json_formatter::{json_from_string, json_to_string};
 use json::{file_reader, file_writer, error};
 
 mod user_folder;
-use user_folder::{get_user_folder, CACHE_NAME};
 
 mod cache;
-use cache::{read_json_cache, get_projects_from_cache, create_cache, push_project_to_cache};
+use cache::{get_projects_from_cache, get_project_from_date};
 
 mod calendar;
-use calendar::project::Project;
-use calendar::date::Date;
-
-use serde_json::json;
-
-use crate::cache::remove_project_from_cache;
 
 fn main() {
   tauri::Builder::default()
+    .invoke_handler(tauri::generate_handler![get_projects_from_cache, get_project_from_date])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

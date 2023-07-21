@@ -3,6 +3,7 @@ use crate::file_reader::json_from_file;
 use crate::user_folder::{get_user_folder, CACHE_NAME};
 use crate::file_writer::write_json_to_file;
 use crate::calendar::project::Project;
+use crate::calendar::date::Date;
 use crate::json::error::FileError;
 
 pub fn read_json_cache() -> Value {
@@ -18,6 +19,23 @@ pub fn read_json_cache() -> Value {
     }
 }
 
+#[tauri::command]
+pub fn get_project_from_date(date: Date) -> Option<Project> {
+
+    let projects = get_projects_from_cache();
+
+    for project in projects {
+        let is_date_in_project = date.to_int() >= project.start_date.to_int() && date.to_int() <= project.final_date.to_int();
+
+        if is_date_in_project {
+            return Some(project);
+        }
+    }
+
+    None
+}
+
+#[tauri::command]
 pub fn get_projects_from_cache() -> Vec<Project> {
     let projects_as_values: Vec<Value> = read_json_cache()["projects"].as_array().unwrap().to_vec();
     let mut projects: Vec<Project> = Vec::new();
