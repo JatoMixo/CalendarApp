@@ -1,6 +1,7 @@
 <script lang="ts">
     import Day from "$lib/Day.svelte";
     import DateSelector from "$lib/DateSelector/DateSelector.svelte";
+    import AddProject from "$lib/AddProject.svelte";
     import { invoke } from "@tauri-apps/api/tauri";
 
     /* ====== TO DELETE ====== */
@@ -36,7 +37,7 @@
     ];
 </script>
 
-<h1>Calendar App</h1>
+<AddProject />
 
 <div id="calendar-section">
     <DateSelector month="July" year="2024" />

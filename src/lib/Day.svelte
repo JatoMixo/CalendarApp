@@ -5,10 +5,10 @@
 
 <style lang="scss">
 
-    $grey-color: #b7bac1;
+    @import "../variables.scss";
 
     #main-box {
-        background-color: #1c1c1c;
+        background-color: $calendar-background;
 
         width: 115px;
         height: 150px;
