@@ -37,25 +37,34 @@
     ];
 </script>
 
-<AddProject />
-
 <div id="calendar-section">
-    <DateSelector month="July"/>
 
-    <div id="days-row">
-        <p>Monday</p>
-        <p>Tuesday</p>
-        <p>Wednesday</p>
-        <p>Thursday</p>
-        <p>Friday</p>
-        <p>Saturday</p>
-        <p>Sunday</p>
+    <div id="column-left">
+        <DateSelector month="July"/>
+
+        <div id="days-row">
+            <p>Monday</p>
+            <p>Tuesday</p>
+            <p>Wednesday</p>
+            <p>Thursday</p>
+            <p>Friday</p>
+            <p>Saturday</p>
+            <p>Sunday</p>
+        </div>
+
+        <div id="calendar-grid">
+            {#each [...Array(31).keys()] as day}
+                <Day day_number={(day + 1).toString()} project={example_projects[0]}/>
+            {/each}
+        </div>
     </div>
+    
+    <div id="column-right">
+        <h1>Add Project</h1>
+        <AddProject />
 
-    <div id="calendar-grid">
-        {#each [...Array(31).keys()] as day}
-            <Day day_number={day.toString()} project={example_projects[0]}/>
-        {/each}
+        <h1>Project List</h1>
+        <!-- === PROJECT LIST INCOMING === -->
     </div>
 </div>
 

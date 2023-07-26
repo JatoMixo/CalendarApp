@@ -22,6 +22,7 @@
         box-shadow: 0 0 10px $grey-color;
 
         width: fit-content;
+        height: fit-content;
 
         display: flex;
         flex-direction: column;

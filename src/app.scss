@@ -57,11 +57,34 @@ body {
     }
 }
 
-#calendar-section {
+#column-left {
     display: flex;
     justify-content: center;
     
     flex-direction: column;
+
+    width: fit-content;
+}
+
+#column-right {
+    display: flex;
+
+    margin-top: 5px;
+
+    flex-direction: column;
+
+    width: fit-content;
+
+    margin-left: 30px;
+    text-align: center;
+
+    gap: 10px;
+}
+
+#calendar-section {
+    display: flex;
+
+    justify-content: center;
 
     width: fit-content;
 }
