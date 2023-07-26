@@ -40,7 +40,7 @@
 <AddProject />
 
 <div id="calendar-section">
-    <DateSelector month="July" year="2024" />
+    <DateSelector month="July"/>
 
     <div id="days-row">
         <p>Monday</p>

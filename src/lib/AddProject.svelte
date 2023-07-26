@@ -45,8 +45,8 @@
 
         background-color: $dark-color;
 
-        color: $grey-color;
-        text-shadow: 0 0 2px $grey-color;
+        color: white;
+        text-shadow: 0 0 2px white;
 
         font-family: "Mononoki NF";
 
