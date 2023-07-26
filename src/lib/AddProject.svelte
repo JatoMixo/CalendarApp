@@ -21,7 +21,7 @@
         border-radius: 15px;
         box-shadow: 0 0 10px $grey-color;
 
-        width: fit-content;
+        width: 264px;
         height: fit-content;
 
         display: flex;
