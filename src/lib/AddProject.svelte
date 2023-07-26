@@ -61,6 +61,22 @@
         text-align: center;
     }
 
+    ::-webkit-calendar-picker-indicator {
+        background-color: white;
+
+        border-radius: 5px;
+
+        margin-right: 5px;
+    }
+
+    ::-webkit-calendar-picker-indicator:hover {
+        background-color: $grey-color;
+    }
+
+    ::-webkit-calendar-picker-indicator:active {
+        background-color: grey;
+    }
+
     #add-project-button {
         height: 32px;
 
@@ -68,12 +84,21 @@
         border-radius: 10px;
         box-shadow: 0 0 5px $grey-color;
 
-        background-color: $dark-color;
+        background-color: #004b15;
+        transition: background-color 0.25s;
 
         color: white;
         text-shadow: 0 0 2px white;
 
         font-family: "Mononoki NF";
+    }
+
+    #add-project-button:hover {
+        background-color: #00621B;
+    }
+
+    #add-project-button:active {
+        background-color: #009128;
     }
 </style>
 
