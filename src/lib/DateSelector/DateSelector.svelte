@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let month: string;
+    export let month: number = 0;
     export let year: number = 2023;
 
     const MONTHS: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -8,30 +8,25 @@
     import RightArrow from "./right-arrow.png";
 
     function NextMonth () {
-        let month_index = MONTHS.indexOf(month);
-
-        const MAX_MONTH_INDEX = MONTHS.length - 1;
-        if (month_index == MAX_MONTH_INDEX) {
-            month = MONTHS[0];
+        if (month == MONTHS.length - 1) {
+            month = 0;
             year++;
 
             return;
         }
 
-        month = MONTHS[month_index + 1];
+        month++;
     }
 
     function LastMonth () {
-        let month_index = MONTHS.indexOf(month);
-
-        if (month_index == 0) {
-            month = MONTHS[MONTHS.length - 1];
+        if (month == 0) {
             year--;
+            month = MONTHS.length - 1;
 
             return;
         }
 
-        month = MONTHS[month_index - 1];
+        month--;
     }
 </script>
 
@@ -96,7 +91,7 @@
         <img src={LeftArrow} alt="Back" class="arrow"/>
     </button>
 
-    <p id="date-display">{month} {year}</p>
+    <p id="date-display">{MONTHS[month]} {year}</p>
 
     <button id="right-button" class="change-button" on:click={NextMonth}>
         <img src={RightArrow} alt="Next" class="arrow"/>

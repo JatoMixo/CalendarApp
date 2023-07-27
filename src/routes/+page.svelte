@@ -40,7 +40,7 @@
 <div id="calendar-section">
 
     <div id="column-left">
-        <DateSelector month="July"/>
+        <DateSelector />
 
         <div id="days-row">
             <p>Monday</p>
