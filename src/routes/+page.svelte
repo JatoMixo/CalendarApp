@@ -2,6 +2,8 @@
     import Day from "$lib/Day.svelte";
     import DateSelector from "$lib/DateSelector/DateSelector.svelte";
     import AddProject from "$lib/AddProject.svelte";
+    import ProjectList from "$lib/ProjectList/ProjectList.svelte";
+
     import { invoke } from "@tauri-apps/api/tauri";
 
     /* ====== TO DELETE ====== */
@@ -64,7 +66,8 @@
         <AddProject />
 
         <h1>Project List</h1>
-        <!-- === PROJECT LIST INCOMING === -->
+        
+        <ProjectList />
     </div>
 </div>
 
