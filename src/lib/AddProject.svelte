@@ -2,6 +2,8 @@
     let name = "";
     let description = "";
 
+    let color = "#000000";
+
     let start_date: Date;
     let final_date: Date;
 
@@ -54,6 +56,10 @@
         text-align: center;
     }
 
+    #description-input {
+        width: 210px;
+    }
+
     ::placeholder {
         color: $grey-color;
         text-shadow: 0 0 2px $grey-color;
@@ -76,6 +82,21 @@
 
     ::-webkit-calendar-picker-indicator:active {
         background-color: grey;
+    }
+
+    #description-input {
+        float: right;
+    }
+
+    #color-selector {
+        float: left;
+
+        height: 35px;
+        width: 35px;
+
+        padding: 0;
+
+        margin: 0;
     }
 
     #add-project-button {
@@ -105,7 +126,11 @@
 
 <div id="main-box">
     <input type="text" placeholder="Name" bind:value={name} id="name-input"/>
-    <input type="text" placeholder="Description" bind:value={description} id="description-input" />
+
+    <div id="second-row">
+        <input type="color" bind:value={color} id="color-selector" />
+        <input type="text" placeholder="Description" bind:value={description} id="description-input" />
+    </div>
 
     <div id="date-section">
         <input type="date" placeholder="Start Date" bind:value={start_date} id="start-date-input" />
