@@ -1,5 +1,7 @@
 <script lang="ts">
-    export let project = {name: "", description: "", color: "", start_date: {day: 0, month: 0, year: 0}, final_date: {day: 0, month: 0, year: 0}};
+    const EMPTY_PROJECT: Project = {name: "", description: "", color: "", start_date: {day: 0, month: 0, year: 0}, final_date: {day: 0, month: 0, year: 0}};
+
+    export let project: Project = EMPTY_PROJECT;
     export let day_number = "";
 </script>
 
@@ -12,6 +14,7 @@
 
         width: 115px;
         height: fit-content;
+        min-height: 119px;
 
         border: solid 4px $grey-color;
         border-radius: 15px;
@@ -56,8 +59,10 @@
 <div id="main-box">
     <h1 id="day-number">{day_number}</h1>
 
-    <div id="project" style="background-color: {project.color};">
-        <h1>{project.name}</h1>
-        <p>{project.description}</p>
-    </div>
+    {#if project != EMPTY_PROJECT}
+        <div id="project" style="background-color: {project.color};">
+            <h1>{project.name}</h1>
+            <p>{project.description}</p>
+        </div>
+    {/if}
 </div>

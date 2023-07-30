@@ -5,38 +5,6 @@
     import ProjectList from "$lib/ProjectList/ProjectList.svelte";
 
     import { invoke } from "@tauri-apps/api/tauri";
-
-    /* ====== TO DELETE ====== */
-    const example_projects = [{
-        
-        name: "Test",
-        color: "#000000",
-        description: "A small test",
-        start_date: {
-            day: 10,
-            month: 3,
-            year: 2023
-        },
-        final_date: {
-            day: 11,
-            month: 3,
-            year: 2023,
-        },
-    },
-        {name: "Test",
-        color: "#000000",
-        description: "A small test",
-        start_date: {
-            day: 10,
-            month: 3,
-            year: 2023
-        },
-        final_date: {
-            day: 11,
-            month: 3,
-            year: 2023,
-        },}
-    ];
 </script>
 
 <div id="calendar-section">
@@ -56,7 +24,7 @@
 
         <div id="calendar-grid">
             {#each [...Array(31).keys()] as day}
-                <Day day_number={(day + 1).toString()} project={example_projects[0]}/>
+                <Day day_number={(day + 1).toString()}/>
             {/each}
         </div>
     </div>

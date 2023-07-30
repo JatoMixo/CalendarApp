@@ -2,10 +2,7 @@
 
     import TrashLogo from "./trash-can.png";
 
-    let projects: Project[] = [
-        {name: "Rickroll", color: "#ffffff", description: "Rickroll or soemthing", start_date: {day: 6, month: 7, year: 2023}, final_date: {day: 7, month: 7, year: 2023}},
-        {name: "SomeTest", color: "#ffff00", description: "A test", start_date: {day: 8, month: 7, year: 2023}, final_date: {day: 9, month: 7, year: 2023}}
-    ];
+    let projects: Project[] = [];
 </script>
 
 <style lang="scss">
