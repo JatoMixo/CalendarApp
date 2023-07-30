@@ -22,7 +22,7 @@
     import { invoke } from "@tauri-apps/api";
 
     async function AddProject() {
-        console.log(start_date)
+        await invoke("add_project_to_cache_from_ui", {project: {name: name, color: color, description: description, start_date: start_date, final_date: final_date}});
     }
 </script>
 
