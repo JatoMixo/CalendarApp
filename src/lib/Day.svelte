@@ -11,7 +11,7 @@
         background-color: $calendar-background;
 
         width: 115px;
-        height: 150px;
+        height: fit-content;
 
         border: solid 4px $grey-color;
         border-radius: 15px;
@@ -49,7 +49,7 @@
             font-size: 15px;
         }
 
-        height: 110px;
+        height: 80px;
     }
 </style>
 

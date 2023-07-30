@@ -20,7 +20,7 @@
         box-shadow: 0 0 10px $grey-color;
 
         width: 264px;
-        height: 50px;
+        height: 355px;
         overflow-y: auto;
 
         display: flex;
