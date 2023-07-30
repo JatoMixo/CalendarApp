@@ -2,7 +2,19 @@
 
     import TrashLogo from "./trash-can.png";
 
+    import { invoke } from "@tauri-apps/api";
+
     let projects: Project[] = [];
+
+    async function get_projects() {
+        projects = await invoke("get_projects_from_cache");
+    }
+
+    get_projects();
+
+    async function DeleteProject(projectName: string) {
+        await invoke("remove_project_from_ui", {project_name: projectName});
+    }
 </script>
 
 <style lang="scss">
@@ -103,11 +115,11 @@
     {#each projects as project}
         <div class="project-container">
             <div class="project-text">
-                <h1 class="project-name text" style="color: {project.color};">{project.name}</h1>
+                <h1 class="project-name text" style="color: {project.color}; text-shadow: 0 0 4px {project.color}">{project.name}</h1>
                 <p class="project-description text">{project.description}</p>
             </div>
             
-            <button class="delete-button">
+            <button class="delete-button" on:click={() => DeleteProject(project.name)}>
                 <img src={TrashLogo} alt="Delete" class="trash-icon"/>
             </button>
         </div>

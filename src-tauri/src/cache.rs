@@ -95,6 +95,14 @@ pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
     write_json_to_file(&cache_path, json_cache)
 }
 
+#[tauri::command]
+pub fn remove_project_from_ui(project_name: String) {
+    match remove_project_from_cache(project_name) {
+        Ok(()) => {},
+        Err(_) => {},
+    };
+}
+
 pub fn remove_project_from_cache(project_name: String) -> Result<(), FileError> {
 
     let actual_projects = get_projects_from_cache();

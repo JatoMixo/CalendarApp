@@ -8,7 +8,7 @@ use json::{file_reader, file_writer, error};
 mod user_folder;
 
 mod cache;
-use cache::{get_projects_from_cache, get_project_from_date, add_project_to_cache_from_ui};
+use cache::{get_projects_from_cache, get_project_from_date, add_project_to_cache_from_ui, remove_project_from_ui};
 
 mod calendar;
 
