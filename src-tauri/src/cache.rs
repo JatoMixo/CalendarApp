@@ -96,8 +96,8 @@ pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
 }
 
 #[tauri::command]
-pub fn remove_project_from_ui(project_name: String) {
-    match remove_project_from_cache(project_name) {
+pub fn remove_project_from_ui(project_name: &str) {
+    match remove_project_from_cache(project_name.to_string()) {
         Ok(()) => {},
         Err(_) => {},
     };

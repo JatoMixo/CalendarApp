@@ -3,12 +3,17 @@
     import DateSelector from "$lib/DateSelector/DateSelector.svelte";
     import AddProject from "$lib/AddProject.svelte";
     import ProjectList from "$lib/ProjectList/ProjectList.svelte";
+
+    let actual_month = new Date().getMonth();
+    let actual_year = new Date().getFullYear();
+
+    let offset_days = 3;
 </script>
 
 <div id="calendar-section">
 
     <div id="column-left">
-        <DateSelector />
+        <DateSelector bind:month={actual_month} bind:year={actual_year}/>
 
         <div id="days-row">
             <p>Monday</p>
@@ -21,6 +26,9 @@
         </div>
 
         <div id="calendar-grid">
+            {#each [...Array({offset_days})].keys() as offset_day}
+
+            {/each}
             {#each [...Array(31).keys()] as day}
                 <Day day_number={(day + 1).toString()}/>
             {/each}
@@ -32,7 +40,6 @@
         <AddProject />
 
         <h1>Project List</h1>
-        
         <ProjectList />
     </div>
 </div>
