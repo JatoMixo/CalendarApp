@@ -1,8 +1,5 @@
 <script lang="ts">
 
-    import type Project from "../project.d.ts";
-    type Project = typeof Project;
-
     import TrashLogo from "./trash-can.png";
 
     let projects: Project[] = [
@@ -95,8 +92,8 @@
     {#each projects as project}
         <div class="project-container">
             <div class="project-text">
-                <h1 class="project-name text" style="color: {project.color};">{project["name"]}</h1>
-                <p class="project-description text">{project["description"]}</p>
+                <h1 class="project-name text" style="color: {project.color};">{project.name}</h1>
+                <p class="project-description text">{project.description}</p>
             </div>
             
             <button class="delete-button">
