@@ -4,11 +4,25 @@
 
     let color = "#000000";
 
-    let start_date: Date;
-    let final_date: Date;
+    let start_date_string: string = "";
+    let final_date_string: string = "";
 
-    function AddProject() {
+    $: start_date = {
+        day: +start_date_string.split("-")[2],
+        month: +start_date_string.split("-")[1],
+        year: +start_date_string.split("-")[0],
+    };
 
+    $: final_date = {
+        day: +final_date_string.split("-")[2],
+        month: +final_date_string.split("-")[1],
+        year: +final_date_string.split("-")[0],
+    };
+
+    import { invoke } from "@tauri-apps/api";
+
+    async function AddProject() {
+        console.log(start_date)
     }
 </script>
 
@@ -128,13 +142,13 @@
     <input type="text" placeholder="Name" bind:value={name} id="name-input"/>
 
     <div id="second-row">
-        <input type="color" bind:value={color} id="color-selector" />
+        <input type="color" bind:value={color} id="color-selector"/>
         <input type="text" placeholder="Description" bind:value={description} id="description-input" />
     </div>
 
     <div id="date-section">
-        <input type="date" placeholder="Start Date" bind:value={start_date} id="start-date-input" />
-        <input type="date" placeholder="Final Date" bind:value={final_date} id="final-date-input" />
+        <input type="date" placeholder="Start Date" bind:value={start_date_string} id="start-date-input" min={new Date().toISOString().slice(0, 10)}/>
+        <input type="date" placeholder="Final Date" bind:value={final_date_string} id="final-date-input" min={new Date().toISOString().slice(0, 10)}/>
     </div>
 
     <button id="add-project-button" on:click={AddProject}>Add Project</button>

@@ -49,6 +49,14 @@ pub fn get_projects_from_cache() -> Vec<Project> {
     projects
 }
 
+#[tauri::command]
+pub fn add_project_to_cache_from_ui(project: Project) {
+    match push_project_to_cache(project) {
+        Ok(()) => {},
+        Err(_) => {},
+    };
+}
+
 pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
 
     let mut projects: Vec<Project> = get_projects_from_cache();
