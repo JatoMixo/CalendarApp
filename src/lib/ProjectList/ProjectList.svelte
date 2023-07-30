@@ -20,6 +20,8 @@
         box-shadow: 0 0 10px $grey-color;
 
         width: 264px;
+        height: 50px;
+        overflow-y: auto;
 
         display: flex;
         flex-direction: column;
@@ -27,6 +29,18 @@
         padding: 10px;
 
         gap: 15px;
+    }
+
+    ::-webkit-scrollbar {
+        background-color: $calendar-background;
+
+        border-radius: 55px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: white;
+
+        border-radius: 8px;
     }
 
     .text {
