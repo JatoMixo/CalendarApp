@@ -55,10 +55,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 790,
         "resizable": true,
         "title": "Project Calendar",
-        "width": 800
+        "width": 1190
       }
     ]
   }

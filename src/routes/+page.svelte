@@ -3,8 +3,6 @@
     import DateSelector from "$lib/DateSelector/DateSelector.svelte";
     import AddProject from "$lib/AddProject.svelte";
     import ProjectList from "$lib/ProjectList/ProjectList.svelte";
-
-    import { invoke } from "@tauri-apps/api/tauri";
 </script>
 
 <div id="calendar-section">
