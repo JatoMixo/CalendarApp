@@ -7,7 +7,17 @@
     let actual_month = new Date().getMonth();
     let actual_year = new Date().getFullYear();
 
-    let offset_days = 0;
+    $: first_day_of_month = new Date(actual_year, actual_month, 1).getDay();
+
+    $: get_offset_days = () => {
+        if (first_day_of_month == 0) {
+            return 6;
+        }
+
+        return first_day_of_month - 1;
+    }
+    
+    $: offset_days = get_offset_days();
 </script>
 
 <div id="calendar-section">
