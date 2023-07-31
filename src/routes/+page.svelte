@@ -7,7 +7,7 @@
     let actual_month = new Date().getMonth();
     let actual_year = new Date().getFullYear();
 
-    let offset_days = 3;
+    let offset_days = 0;
 </script>
 
 <div id="calendar-section">
@@ -26,9 +26,10 @@
         </div>
 
         <div id="calendar-grid">
-            {#each [...Array({offset_days})].keys() as offset_day}
-
-            {/each}
+            {#if offset_days != 0}
+                <div style="grid-column-start: 1; grid-column-end: {offset_days + 1}"></div>
+            {/if}
+            
             {#each [...Array(31).keys()] as day}
                 <Day day_number={(day + 1).toString()}/>
             {/each}
