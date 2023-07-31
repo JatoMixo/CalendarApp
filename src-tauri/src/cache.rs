@@ -20,6 +20,13 @@ pub fn read_json_cache() -> Value {
 }
 
 #[tauri::command]
+pub fn get_project_from_date_for_ui(date: Date) -> Project {
+    match get_project_from_date(date) {
+        Some(project) => project,
+        None => Project {name: String::new(), description: String::new(), color: String::new(), start_date: Date {day: 0, month: 0, year: 0}, final_date: Date {day: 0, month: 0, year: 0}},
+    }
+}
+
 pub fn get_project_from_date(date: Date) -> Option<Project> {
 
     let projects = get_projects_from_cache();
