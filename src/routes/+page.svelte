@@ -18,6 +18,21 @@
     }
     
     $: offset_days = get_offset_days();
+
+    $: get_number_of_days_from_month = () => {
+        
+        const FEBRUARY_INDEX = 1;
+
+        if (actual_month == FEBRUARY_INDEX) {
+            return 28 + (actual_year % 4 == 0 ? 1 : 0);
+        }
+
+        if (actual_month <= 6) {
+            return 30 + (actual_month % 2 == 0 ? 1 : 0);
+        }
+
+        return 30 + (actual_month % 2 == 0 ? 0 : 1);
+    }
 </script>
 
 <div id="calendar-section">
@@ -40,7 +55,7 @@
                 <div style="grid-column-start: 1; grid-column-end: {offset_days + 1}"></div>
             {/if}
             
-            {#each [...Array(31).keys()] as day}
+            {#each [...Array(get_number_of_days_from_month()).keys()] as day}
                 <Day day_number={(day + 1).toString()}/>
             {/each}
         </div>
