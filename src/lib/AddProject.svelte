@@ -19,6 +19,14 @@
         year: +final_date_string.split("-")[0],
     };
 
+    $: get_final_date_limit = () => {
+        if (start_date_string == "") {
+            return new Date().toISOString().slice(0, 10);
+        }
+
+        return start_date_string;
+    }
+
     import { invoke } from "@tauri-apps/api";
 
     async function AddProject() {
@@ -156,7 +164,7 @@
 
     <div id="date-section">
         <input type="date" placeholder="Start Date" bind:value={start_date_string} id="start-date-input" min={new Date().toISOString().slice(0, 10)}/>
-        <input type="date" placeholder="Final Date" bind:value={final_date_string} id="final-date-input" min={new Date().toISOString().slice(0, 10)}/>
+        <input type="date" placeholder="Final Date" bind:value={final_date_string} id="final-date-input" min={get_final_date_limit()}/>
     </div>
 
     <button id="add-project-button" on:click={AddProject}>Add Project</button>
