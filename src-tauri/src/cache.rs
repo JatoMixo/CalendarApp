@@ -5,6 +5,7 @@ use crate::file_writer::write_json_to_file;
 use crate::calendar::project::Project;
 use crate::calendar::date::Date;
 use crate::json::error::FileError;
+use tauri::{AppHandle, Manager};
 
 pub fn read_json_cache() -> Value {
 
@@ -103,9 +104,11 @@ pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
 }
 
 #[tauri::command]
-pub fn remove_project_from_ui(project_name: &str) {
+pub fn remove_project_from_ui(app: AppHandle, project_name: &str) {
     match remove_project_from_cache(project_name.to_string()) {
-        Ok(()) => {},
+        Ok(()) => {
+            app.emit_all("removed_project", "").unwrap();
+        },
         Err(_) => {},
     };
 }

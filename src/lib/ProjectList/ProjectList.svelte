@@ -3,6 +3,7 @@
     import TrashLogo from "./trash-can.png";
 
     import { invoke } from "@tauri-apps/api";
+    import { listen } from "@tauri-apps/api/event";
 
     let projects: Project[] = [];
 
@@ -11,6 +12,10 @@
     }
 
     get_projects();
+
+    listen("removed_project", (event) => {
+        get_projects();
+    });
 
     async function DeleteProject(projectName: string) {
         await invoke("remove_project_from_ui", {projectName: projectName});
