@@ -163,7 +163,7 @@
     </div>
 
     <div id="date-section">
-        <input type="date" placeholder="Start Date" bind:value={start_date_string} id="start-date-input" min={new Date().toISOString().slice(0, 10)}/>
+        <input type="date" placeholder="Start Date" bind:value={start_date_string} id="start-date-input" min={new Date().toISOString().slice(0, 10)} max={final_date_string}/>
         <input type="date" placeholder="Final Date" bind:value={final_date_string} id="final-date-input" min={get_final_date_limit()}/>
     </div>
 
