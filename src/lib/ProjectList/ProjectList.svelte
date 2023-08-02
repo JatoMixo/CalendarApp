@@ -13,7 +13,11 @@
 
     get_projects();
 
-    listen("removed_project", (event) => {
+    listen("removed_project", () => {
+        get_projects();
+    });
+
+    listen("added_project", () => {
         get_projects();
     });
 

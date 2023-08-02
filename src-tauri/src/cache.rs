@@ -58,9 +58,11 @@ pub fn get_projects_from_cache() -> Vec<Project> {
 }
 
 #[tauri::command]
-pub fn add_project_to_cache_from_ui(project: Project) {
+pub fn add_project_to_cache_from_ui(app: AppHandle, project: Project) {
     match push_project_to_cache(project) {
-        Ok(()) => {},
+        Ok(()) => {
+            app.emit_all("added_project", ()).unwrap();
+        },
         Err(_) => {},
     };
 }
