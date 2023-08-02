@@ -1,7 +1,7 @@
 <script lang="ts">
     const EMPTY_PROJECT: Project = {name: "", description: "", color: "", start_date: {day: 0, month: 0, year: 0}, final_date: {day: 0, month: 0, year: 0}};
 
-    export let project: Project = EMPTY_PROJECT;
+    export let project: any = EMPTY_PROJECT;
     export let day_number = "";
 </script>
 

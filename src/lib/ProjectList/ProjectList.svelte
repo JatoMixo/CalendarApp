@@ -13,7 +13,7 @@
     get_projects();
 
     async function DeleteProject(projectName: string) {
-        await invoke("remove_project_from_ui", {project_name: projectName});
+        await invoke("remove_project_from_ui", {projectName: projectName});
     }
 </script>
 

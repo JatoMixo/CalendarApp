@@ -4,6 +4,8 @@
     import AddProject from "$lib/AddProject.svelte";
     import ProjectList from "$lib/ProjectList/ProjectList.svelte";
 
+    import { invoke } from "@tauri-apps/api";
+
     let actual_month = new Date().getMonth();
     let actual_year = new Date().getFullYear();
 
@@ -33,6 +35,16 @@
 
         return 30 + (actual_month % 2 == 0 ? 0 : 1);
     }
+
+    let projects_for_days: any[] = [];
+
+    async function get_projects_for_month() {
+        for (let i = 0; i < 32; i++) {
+            await invoke("get_project_from_date_for_ui", {date: {day: i, month: actual_month, year: actual_year}}).then((project) => projects_for_days.push(project));
+        }
+    }
+
+    get_projects_for_month();
 </script>
 
 <div id="calendar-section">
@@ -56,7 +68,7 @@
             {/if}
             
             {#each [...Array(get_number_of_days_from_month()).keys()] as day}
-                <Day day_number={(day + 1).toString()}/>
+                <Day day_number={(day + 1).toString()} project={projects_for_days[day]}/>
             {/each}
         </div>
     </div>
