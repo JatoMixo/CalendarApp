@@ -23,6 +23,14 @@
 
     async function AddProject() {
         await invoke("add_project_to_cache_from_ui", {project: {name: name, color: color, description: description, start_date: start_date, final_date: final_date}});
+
+        name = "";
+        description = "";
+
+        color = "#000000";
+
+        start_date_string = "";
+        final_date_string = "";
     }
 </script>
 
