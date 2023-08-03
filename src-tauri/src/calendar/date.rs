@@ -36,6 +36,6 @@ impl Date {
     }
 
     pub fn to_int(&self) -> u64 {
-        (self.day as u64 + (self.month * 12) as u64 + self.year as u64 * 365) as u64
+        (self.year as u64) * 365 + (self.month as u64) * 30 + (self.day as u64)
     }
 }

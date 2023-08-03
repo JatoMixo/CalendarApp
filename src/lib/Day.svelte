@@ -1,7 +1,5 @@
 <script lang="ts">
-    const EMPTY_PROJECT: Project = {name: "", description: "", color: "", start_date: {day: 0, month: 0, year: 0}, final_date: {day: 0, month: 0, year: 0}};
-
-    export let project: any = EMPTY_PROJECT;
+    export let project: any = null;
     export let day_number = "";
 </script>
 
@@ -59,7 +57,7 @@
 <div id="main-box">
     <h1 id="day-number">{day_number}</h1>
 
-    {#if project != EMPTY_PROJECT}
+    {#if project != null}
         <div id="project" style="background-color: {project.color};">
             <h1>{project.name}</h1>
             <p>{project.description}</p>

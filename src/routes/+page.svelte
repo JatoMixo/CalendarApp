@@ -5,6 +5,7 @@
     import ProjectList from "$lib/ProjectList/ProjectList.svelte";
 
     import { invoke } from "@tauri-apps/api";
+    import { listen } from "@tauri-apps/api/event";
 
     let actual_month = new Date().getMonth();
     let actual_year = new Date().getFullYear();
@@ -39,12 +40,23 @@
     let projects_for_days: any[] = [];
 
     async function get_projects_for_month() {
-        for (let i = 0; i < 32; i++) {
-            await invoke("get_project_from_date_for_ui", {date: {day: i, month: actual_month, year: actual_year}}).then((project) => projects_for_days.push(project));
-        }
+        projects_for_days = await invoke("get_projects_vector", {month: actual_month, year: actual_year});
     }
 
     get_projects_for_month();
+
+    listen("added_project", () => {
+        get_projects_for_month();
+    });
+
+    listen("removed_project", () => {
+        get_projects_for_month();
+    });
+
+    listen("changed_month", () => {
+        console.log("AS")
+        get_projects_for_month();
+    });
 </script>
 
 <div id="calendar-section">

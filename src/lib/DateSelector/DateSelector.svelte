@@ -2,6 +2,8 @@
     export let month: number = 0;
     export let year: number = 2023;
 
+    import { emit } from "@tauri-apps/api/event";
+
     const MONTHS: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     import LeftArrow from "./left-arrow.png";
@@ -15,6 +17,8 @@
             return;
         }
 
+        emit("changed_month");
+
         month++;
     }
 
@@ -25,6 +29,8 @@
 
             return;
         }
+
+        emit("changed_month");
 
         month--;
     }

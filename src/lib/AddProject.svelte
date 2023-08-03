@@ -9,13 +9,13 @@
 
     $: start_date = {
         day: +start_date_string.split("-")[2],
-        month: +start_date_string.split("-")[1],
+        month: +start_date_string.split("-")[1] - 1,
         year: +start_date_string.split("-")[0],
     };
 
     $: final_date = {
         day: +final_date_string.split("-")[2],
-        month: +final_date_string.split("-")[1],
+        month: +final_date_string.split("-")[1] - 1,
         year: +final_date_string.split("-")[0],
     };
 

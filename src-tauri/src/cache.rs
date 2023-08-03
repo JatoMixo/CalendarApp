@@ -21,11 +21,15 @@ pub fn read_json_cache() -> Value {
 }
 
 #[tauri::command]
-pub fn get_project_from_date_for_ui(date: Date) -> Project {
-    match get_project_from_date(date) {
-        Some(project) => project,
-        None => Project {name: String::new(), description: String::new(), color: String::new(), start_date: Date {day: 0, month: 0, year: 0}, final_date: Date {day: 0, month: 0, year: 0}},
-    }
+pub fn get_projects_vector(month: u8, year: u16) -> Vec<Option<Project>> {
+    
+    let mut projects_for_days: Vec<Option<Project>> = Vec::new();
+
+    for day in 1..32 {
+        projects_for_days.push(get_project_from_date(Date {day: day, month: month, year: year}));
+    };
+
+    projects_for_days
 }
 
 pub fn get_project_from_date(date: Date) -> Option<Project> {
@@ -95,7 +99,7 @@ pub fn push_project_to_cache(project: Project) -> Result<(), FileError> {
         "projects": projects,
     });
 
-    let mut cache_path: String = String::new();
+    let cache_path: String;
 
     match get_user_folder() {
         Ok(user_folder) => cache_path = user_folder + CACHE_NAME,
