@@ -4,41 +4,41 @@
 
     let color = "#000000";
 
-    let start_date_string: string = "";
-    let final_date_string: string = "";
+    let startDateString: string = "";
+    let finalDateString: string = "";
 
-    $: start_date = {
-        day: +start_date_string.split("-")[2],
-        month: +start_date_string.split("-")[1] - 1,
-        year: +start_date_string.split("-")[0],
+    $: startDate = {
+        day: +startDateString.split("-")[2],
+        month: +startDateString.split("-")[1] - 1,
+        year: +startDateString.split("-")[0],
     };
 
-    $: final_date = {
-        day: +final_date_string.split("-")[2],
-        month: +final_date_string.split("-")[1] - 1,
-        year: +final_date_string.split("-")[0],
+    $: finalDate = {
+        day: +finalDateString.split("-")[2],
+        month: +finalDateString.split("-")[1] - 1,
+        year: +finalDateString.split("-")[0],
     };
 
-    $: get_final_date_limit = () => {
-        if (start_date_string == "") {
+    $: getFinalDateLimit = () => {
+        if (startDateString == "") {
             return new Date().toISOString().slice(0, 10);
         }
 
-        return start_date_string;
+        return startDateString;
     }
 
     import { invoke } from "@tauri-apps/api";
 
     async function AddProject() {
-        await invoke("add_project_to_cache_from_ui", {project: {name: name, color: color, description: description, start_date: start_date, final_date: final_date}});
+        await invoke("add_project_to_cache_from_ui", {project: {name: name, color: color, description: description, startDate: startDate, finalDate: finalDate}});
 
         name = "";
         description = "";
 
         color = "#000000";
 
-        start_date_string = "";
-        final_date_string = "";
+        startDateString = "";
+        finalDateString = "";
     }
 </script>
 
@@ -163,8 +163,8 @@
     </div>
 
     <div id="date-section">
-        <input type="date" placeholder="Start Date" bind:value={start_date_string} id="start-date-input" min={new Date().toISOString().slice(0, 10)} max={final_date_string}/>
-        <input type="date" placeholder="Final Date" bind:value={final_date_string} id="final-date-input" min={get_final_date_limit()}/>
+        <input type="date" placeholder="Start Date" bind:value={startDateString} id="start-date-input" min={new Date().toISOString().slice(0, 10)} max={finalDateString}/>
+        <input type="date" placeholder="Final Date" bind:value={finalDateString} id="final-date-input" min={getFinalDateLimit()}/>
     </div>
 
     <button id="add-project-button" on:click={AddProject}>Add Project</button>

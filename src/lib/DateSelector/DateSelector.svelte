@@ -9,7 +9,7 @@
     import LeftArrow from "./left-arrow.png";
     import RightArrow from "./right-arrow.png";
 
-    function NextMonth () {
+    function nextMonth () {
         if (month == MONTHS.length - 1) {
             month = 0;
             year++;
@@ -22,7 +22,7 @@
         month++;
     }
 
-    function LastMonth () {
+    function backMonth () {
         if (month == 0) {
             year--;
             month = MONTHS.length - 1;
@@ -93,13 +93,13 @@
 </style>
 
 <div id="main-container">
-    <button id="left-button" class="change-button" on:click={LastMonth}>
+    <button id="left-button" class="change-button" on:click={backMonth}>
         <img src={LeftArrow} alt="Back" class="arrow"/>
     </button>
 
     <p id="date-display">{MONTHS[month]} {year}</p>
 
-    <button id="right-button" class="change-button" on:click={NextMonth}>
+    <button id="right-button" class="change-button" on:click={nextMonth}>
         <img src={RightArrow} alt="Next" class="arrow"/>
     </button>
 </div>

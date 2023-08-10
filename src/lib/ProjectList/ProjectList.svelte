@@ -7,18 +7,18 @@
 
     let projects: Project[] = [];
 
-    async function get_projects() {
+    async function getProjects() {
         projects = await invoke("get_projects_from_cache");
     }
 
-    get_projects();
+    getProjects();
 
     listen("removed_project", () => {
-        get_projects();
+        getProjects();
     });
 
     listen("added_project", () => {
-        get_projects();
+        getProjects();
     });
 
     async function DeleteProject(projectName: string) {

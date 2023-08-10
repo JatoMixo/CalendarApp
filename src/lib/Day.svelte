@@ -1,6 +1,6 @@
 <script lang="ts">
     export let project: any = null;
-    export let day_number = "";
+    export let dayNumber = "";
 </script>
 
 <style lang="scss">
@@ -55,7 +55,7 @@
 </style>
 
 <div id="main-box">
-    <h1 id="day-number">{day_number}</h1>
+    <h1 id="day-number">{dayNumber}</h1>
 
     {#if project != null}
         <div id="project" style="background-color: {project.color};">
