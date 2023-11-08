@@ -30,8 +30,9 @@
     import { invoke } from "@tauri-apps/api";
 
     async function AddProject() {
-        await invoke("add_project_to_cache_from_ui", {project: {name: name, color: color, description: description, startDate: startDate, finalDate: finalDate}});
+        await invoke("add_project_to_cache_from_ui", {project: {name: name, color: color, description: description, start_date: startDate, final_date: finalDate}});
 
+        // Reset variables
         name = "";
         description = "";
 
